@@ -25,7 +25,9 @@ public class Soma10 {
 			if (entrada==null) entrada = "";
 			else entrada = entrada.trim();
 			
-			jogada(entrada);
+			if ((entrada.length()>0)) {
+				jogada(entrada);
+			}
 		}
 		while (entrada.length()>0);
 		
