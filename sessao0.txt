@@ -1,0 +1,54 @@
+   A B C D E F G H I J
+01 2 1 2 2 1 9 8 9 3 8
+02 3 2 6 4 5 9 7 4 9 3
+03 4 7 3 4 5          
+? h1i2
+   A B C D E F G H I J
+01 2 1 2 2 1 9 8   3 8
+02 3 2 6 4 5 9 7 4   3
+03 4 7 3 4 5          
+? i1j2
+   A B C D E F G H I J
+01 2 1 2 2 1 9 8     8
+02 3 2 6 4 5 9 7 4    
+03 4 7 3 4 5          
+? g1j1
+   A B C D E F G H I J
+01 2 1 2 2 1 9        
+02 3 2 6 4 5 9 7 4    
+03 4 7 3 4 5          
+? c1d1
+   A B C D E F G H I J
+01 2 1     1 9        
+02 3 2 6 4 5 9 7 4    
+03 4 7 3 4 5          
+? b1e1
+   A B C D E F G H I J
+01 2         9        
+02 3 2 6 4 5 9 7 4    
+03 4 7 3 4 5          
+? b2a1
+   A B C D E F G H I J
+01           9        
+02 3   6 4 5 9 7 4    
+03 4 7 3 4 5          
+? f1f2
+   A B C D E F G H I J
+02 3   6 4 5   7 4    
+03 4 7 3 4 5          
+? b3a2
+   A B C D E F G H I J
+02     6 4 5   7 4    
+03 4   3 4 5          
+? h2a3
+   A B C D E F G H I J
+02     6 4 5   7      
+03     3 4 5          
+? g2c3
+   A B C D E F G H I J
+02     6 4 5          
+03       4 5          
+? c2d3
+   A B C D E F G H I J
+02       4 5          
+03         5          

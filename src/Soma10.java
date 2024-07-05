@@ -1,5 +1,6 @@
 import java.text.DecimalFormat;
 import java.util.Random;
+import java.util.Scanner;
 
 public class Soma10 {
 
@@ -11,8 +12,43 @@ public class Soma10 {
 	public static int qtdNumeros = 0;
 	
 	public static void main(String[] arghs) {
-		sorteia(25);
-		imprime();
+		sorteia(24);
+		
+		Scanner sc = new Scanner(System.in);
+		String entrada;
+		do {
+			imprime();
+			
+			System.out.print("? ");
+			entrada = sc.nextLine();
+			
+			if (entrada==null) entrada = "";
+			else entrada = entrada.trim();
+			
+			jogada(entrada);
+		}
+		while (entrada.length()>0);
+		
+		sc.close();
+	}
+	
+	/**
+	 * Realiza uma jogada a partir das coordenadas especificadas
+	 * @param entrada
+	 */
+	public static void jogada(String entrada) {
+		entrada = entrada.toUpperCase();
+		
+		int c1,l1,c2,l2;
+		
+		c1 = entrada.charAt(0)-'A';
+		l1 = entrada.charAt(1)-'0'-1;
+		c2 = entrada.charAt(2)-'A';
+		l2 = entrada.charAt(3)-'0'-1;
+
+		numeros[l1][c1] = null;
+		numeros[l2][c2] = null;
+				
 	}
 	
 	
