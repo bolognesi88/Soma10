@@ -39,6 +39,11 @@ public class Soma10 {
 	public static void jogada(String entrada) {
 		entrada = entrada.toUpperCase();
 		
+		if (entrada.charAt(0)== '+') {
+			sorteia(2*(entrada.charAt(1)-'0'));
+			return;
+		}
+		
 		int c1,l1,c2,l2;
 		
 		c1 = entrada.charAt(0)-'A';
