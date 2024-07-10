@@ -5,14 +5,14 @@ import java.util.Scanner;
 public class Soma10 {
 
 	public static final int LINHAS = 12;
-	public static final int COLUNAS = 10;
+	public static final int COLUNAS = 9;
 	
 	public static Integer[][] numeros = new Integer[LINHAS][COLUNAS];
 	
 	public static int qtdNumeros = 0;
 	
 	public static void main(String[] arghs) {
-		sorteia(24);
+		sorteia(34);
 		
 		Scanner sc = new Scanner(System.in);
 		String entrada;
