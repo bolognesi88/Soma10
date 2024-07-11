@@ -32,6 +32,8 @@ public class Soma10 {
 		while (entrada.length()>0);
 		
 		sc.close();
+		
+		System.out.println("Xau");
 	}
 	
 	/**
