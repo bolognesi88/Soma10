@@ -54,10 +54,51 @@ public class Soma10 {
 		l1 = entrada.charAt(1)-'0'-1;
 		c2 = entrada.charAt(2)-'A';
 		l2 = entrada.charAt(3)-'0'-1;
+		
+		boolean deuMatch = true;
+		boolean iguais = numeros[l1][c1] == numeros[l2][c2];
+		boolean soma10 = numeros[l1][c1] + numeros[l2][c2] == 10;
+		
+		// se os números forem iguais ou com soma 10, vamos validar suas posições
+		if (iguais || soma10) {
+			//
+			if (l1 == l2) { // se os dois estiverem na mesma linha
+				int menor = Math.min(c1, c2);
+				int maior = Math.max(c1, c2);
+				//
+				// se tiver algum numero mala obstruindo o caminho
+				for (int j=menor+1;j<maior;j++) {
+					if (numeros[l1][j] != null) {
+						deuMatch = false;
+						break;
+					}
+				}
+			} else if (c1 == c2) { // se os dois estiverem na mesma coluna
+				int menor = Math.min(l1, l2);
+				int maior = Math.max(l1, l2);
+				//
+				// se tiver algum numero mala obstruindo o caminho
+				for (int i=menor+1;i<maior;i++) {
+					if (numeros[i][c1] != null) {
+						deuMatch = false;
+						break;
+					}
+				}
+			}
+		}
+		else {
+			System.out.println("ERRRRRRRROOOOUUUUU");
+			deuMatch = false;
+		}
 
-		numeros[l1][c1] = null;
-		numeros[l2][c2] = null;
-				
+		if (deuMatch) {
+			if (iguais) System.out.println("Iguais!");
+			else System.out.println("Soma 10!!!!");
+			//
+			numeros[l1][c1] = null;
+			numeros[l2][c2] = null;
+		}
+						
 	}
 	
 	
