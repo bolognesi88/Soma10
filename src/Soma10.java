@@ -189,7 +189,7 @@ public class Soma10 {
 	 */
 	public static void sorteia(int qtd) {
 		for (int q=0; q<qtd; q++) {
-			int numero = 1;//+(new Random()).nextInt(9);
+			int numero = 1+(new Random()).nextInt(9);
 			
 			numeros[qtdNumeros / COLUNAS][qtdNumeros % COLUNAS] = numero;
 			qtdNumeros++;
