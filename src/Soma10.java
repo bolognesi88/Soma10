@@ -59,10 +59,35 @@ public class Soma10 {
 		
 		int c1,l1,c2,l2;
 		
-		c1 = entrada.charAt(0)-'A';
-		l1 = entrada.charAt(1)-'0'-1;
-		c2 = entrada.charAt(2)-'A';
-		l2 = entrada.charAt(3)-'0'-1;
+		try {
+			c1 = entrada.charAt(0)-'A';
+			l1 = entrada.charAt(1)-'0'-1;
+			c2 = entrada.charAt(2)-'A';
+			l2 = entrada.charAt(3)-'0'-1;
+			
+			if (c1<0 || c2<0 || c1>=COLUNAS || c2>=COLUNAS) { 
+				System.err.println("Não entendi coluna");
+				System.err.flush(); // tava imprimindo no lugar errado, misturado com o tabuleiro
+				return;
+			}
+			if (l1<0 || l2<0 || l1>=LINHAS  || l2>=LINHAS)  {
+				System.err.println("Não entendi linha");
+				System.err.flush(); 
+				return;
+			}
+		}
+		catch (Throwable t) {
+			System.err.println("Não entendi nada :-0");
+			System.err.flush(); 
+			return;
+		}
+		
+		
+		if (numeros[l1][c1]==null || numeros[l2][c2] ==null) {
+			System.err.println("não tem numero aí ow!");
+			System.err.flush(); 
+			return;
+		}
 		
 		boolean deuMatch = true;
 		boolean iguais = numeros[l1][c1] == numeros[l2][c2];
