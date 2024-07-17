@@ -1,4 +1,6 @@
 import java.text.DecimalFormat;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -10,11 +12,11 @@ public class Soma10 {
 	public static Integer[][] numeros = new Integer[LINHAS][COLUNAS];
 	
 	public static int qtdNumeros = 0;	
-	public static int qtdeNumerosTela = 35;
 	public static int bancasRestantes = 5;
+	public static int qtdeNumerosTela = 0;
 	
 	public static void main(String[] arghs) {
-		sorteia(qtdeNumerosTela);
+		sorteia(35);
 		
 		Scanner sc = new Scanner(System.in);
 		String entrada;
@@ -47,9 +49,10 @@ public class Soma10 {
 		
 		if (entrada.charAt(0)== '+') {
 			if (bancasRestantes > 0) {
-				sorteia(qtdeNumerosTela);
-				qtdeNumerosTela *= 2;
+				duplicaExistentes();
 				bancasRestantes--;
+				System.out.println("Tik-Tikaaaaaaaaaaaa...............");
+				System.out.println(bancasRestantes+"  bancas restantes");
 			}
 			return;
 		}
@@ -122,20 +125,50 @@ public class Soma10 {
 			numeros[l2][c2] = null;
 			//
 			qtdeNumerosTela -= 2;
+			
+			if (qtdeNumerosTela==0) {
+				System.out.println("ACABOOOOOUUUU, É TETRAAAAA!!!!!");
+			}
+			else {
+				verificaEEliminaLinhasVazias();
+			}
 		}
 						
 	}
 	
-	
+	/**
+	 * Coloca os numeros que ainda estão na tela no final da sequencia de nrnso
+	 */
+	private static void duplicaExistentes() {
+		List<Integer> existentes = new ArrayList<Integer>(qtdeNumerosTela);
+		
+		for (int l=0; l<LINHAS; l++) {
+			for (int c=0; c<COLUNAS; c++) {
+			
+				if (numeros[l][c]!=null) {
+					existentes.add(numeros[l][c]);
+				}
+			}
+		}
+		
+		// insere no final do tabuleiro
+		for (Integer i: existentes) {
+			numeros[qtdNumeros / COLUNAS][qtdNumeros % COLUNAS] = i;
+			qtdNumeros++;
+			qtdeNumerosTela++;
+		}
+	}
+
 	/**
 	 * acrescenta a qtd de números ao tabuleiro do jogo, e avança o contador de nros sorteados
 	 */
 	public static void sorteia(int qtd) {
 		for (int q=0; q<qtd; q++) {
-			int numero = 1+(new Random()).nextInt(9);
+			int numero = 1;//+(new Random()).nextInt(9);
 			
 			numeros[qtdNumeros / COLUNAS][qtdNumeros % COLUNAS] = numero;
 			qtdNumeros++;
+			qtdeNumerosTela++;
 		}
 	}
 	
@@ -190,4 +223,43 @@ public class Soma10 {
 		
 		return true;
 	}
+
+	/**
+	 * Verifica as linhas que ficaram vazias após a ultima jogada e puxa tudo pra cima.
+	 * 
+	 * Pra falar a verdade estou bem perdido com este código, não está elegante, deve
+	 * ter maneiras muito melhores de fazer.
+	 */
+	private static void verificaEEliminaLinhasVazias() {
+		// vou percorrer só as linhas que já foram preenchidas até o fim, ou seja, até (qtdNumeros/COLUNAS)
+		for (int l=0; l<qtdNumeros/COLUNAS; l++) {
+			// uma jogada pode remover até 2 linhas ao memso tempo
+			for (int r=1; r<=2; r++) {
+				if(linhaVazia(l)) {
+					qtdNumeros-=COLUNAS; // decrementa a posição onde vai colocar novos números
+					for (int m=l+1; m<LINHAS; m++) {
+						copiaLinha(m, m-1);
+					}
+				}
+			}
+		}
+	}
+	
+	/**
+	 * Perceba que isto só funciona mantendo o contador qtdNumeros válido se a última 
+	 * linha (constante LINHAS-1) estiver sempre vazia.
+	 * 
+	 * @param linhaOrigem
+	 * @param linhaDestino
+	 */
+	private static void copiaLinha(int linhaOrigem, int linhaDestino) {
+		if (linhaOrigem>=LINHAS) return;
+		if (linhaDestino>=LINHAS) return;
+	
+		for (int c=0; c<COLUNAS; c++) {
+			numeros[linhaDestino][c]=numeros[linhaOrigem][c];
+		}
+		
+	}
+
 }
