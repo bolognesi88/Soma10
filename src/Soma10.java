@@ -197,6 +197,9 @@ public class Soma10 {
 		if (deuMatch) {
 			if (iguais) System.out.println("Iguais!");
 			else System.out.println("Soma 10!!!!");
+			
+			mensagemEventualMatch(l1,c1,l2,c2);
+			
 			//
 			numeros[l1][c1] = null;
 			numeros[l2][c2] = null;
@@ -213,6 +216,30 @@ public class Soma10 {
 						
 	}
 	
+	/**
+	 * Congratulações ao jogador
+	 * @param l1
+	 * @param c1
+	 * @param l2
+	 * @param c2
+	 */
+	private static void mensagemEventualMatch(int l1, int c1, int l2, int c2) {
+		int distanciaN1 = Math.abs(l2-l1) + Math.abs(c2-c1); 
+		
+		if (distanciaN1==4) {
+			System.out.println("Excelente!");
+		}
+		else if (distanciaN1==5) {
+			System.out.println("Que sacada!");
+		}
+		else if (distanciaN1==6) {
+			System.out.println("Sois Baita!");
+		}
+		else if (distanciaN1>=7) {
+			System.out.println("Tua cabeça é maior que um balão de ar quente!");
+		}
+	}
+
 	/**
 	 * Coloca os numeros que ainda estão na tela no final da sequencia de nrnso
 	 */
