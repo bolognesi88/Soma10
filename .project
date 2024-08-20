@@ -20,4 +20,11 @@
 		<nature>org.eclipse.wst.common.project.facet.core.nature</nature>
 		<nature>org.eclipse.jdt.core.javanature</nature>
 	</natures>
+	<linkedResources>
+		<link>
+			<name>sessao01.txt</name>
+			<type>1</type>
+			<location>/home/stefania/git/Soma10/sessao01.txt</location>
+		</link>
+	</linkedResources>
 </projectDescription>
