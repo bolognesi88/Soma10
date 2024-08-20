@@ -103,6 +103,7 @@ public class Soma10 {
 				// se tiver algum numero mala obstruindo o caminho
 				for (int j=menor+1;j<maior;j++) {
 					if (numeros[l1][j] != null) {
+						System.out.println("tem número na frente");
 						deuMatch = false;
 						break;
 					}
@@ -114,6 +115,7 @@ public class Soma10 {
 				// se tiver algum numero mala obstruindo o caminho
 				for (int i=menor+1;i<maior;i++) {
 					if (numeros[i][c1] != null) {
+						System.out.println("tem número na frente");
 						deuMatch = false;
 						break;
 					}
@@ -129,15 +131,24 @@ public class Soma10 {
 					// procurando por números obstruindo o caminho
 					for (int k=1;k<maiorL-menorL;k++) {
 						if (numeros[menorL+k][menorC+k] != null) {
+							System.out.println("tem número na frente");
 							deuMatch = false;
 							break;
 						}
 					}
-				} // else if () { // testando a diagonal "secundária" }
-				else deuMatch = false;
+				} else if (maiorL-menorL == menorC-maiorC) { // testando a diagonal "secundária" 
+					//
+					// procurando por números obstruindo o caminho
+					for (int k=1;k<maiorL-menorL;k++) {
+						if (numeros[menorL+k][menorC-k] != null) {
+							System.out.println("tem número na frente");
+							deuMatch = false;
+							break;
+						}
+					}
+				} else deuMatch = false;
 			}
-		}
-		else {
+		} else {
 			System.out.println("ERRRRRRRROOOOUUUUU");
 			deuMatch = false;
 		}
