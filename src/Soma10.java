@@ -286,16 +286,16 @@ public class Soma10 {
 	private static void mensagemEventualMatch(int l1, int c1, int l2, int c2) {
 		int distanciaN1 = Math.abs(l2-l1) + Math.abs(c2-c1); 
 		
-		if (distanciaN1==3) {
+		if (distanciaN1==4) {
 			System.out.println("Excelente!");
 		}
-		else if (distanciaN1==4) {
+		else if (distanciaN1==5) {
 			System.out.println("Que sacada!");
 		}
-		else if (distanciaN1==5) {
+		else if (distanciaN1==6) {
 			System.out.println("Sois Baita!");
 		}
-		else if (distanciaN1>=6) {
+		else if (distanciaN1>=7) {
 			System.out.println("Tua cabeça é maior que um balão de ar quente!");
 		}
 	}
