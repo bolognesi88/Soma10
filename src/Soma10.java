@@ -127,7 +127,7 @@ public class Soma10 {
 				int menorL = Math.min(l1, l2);
 				int maiorL = Math.max(l1, l2);
 				//
-				if (maiorL-menorL == maiorC-menorC) { // se os dois estiverem na mesma "diagonal principal"
+				if (l2-l1 == c2-c1) { // se os dois estiverem na mesma "diagonal principal"
 					//
 					// procurando por números obstruindo o caminho
 					for (int k=1;k<maiorL-menorL;k++) {
@@ -138,11 +138,11 @@ public class Soma10 {
 							break;
 						}
 					}
-				} else if (maiorL-menorL == menorC-maiorC) { // testando a diagonal "secundária" 
+				} else if (l2-l1 == c1-c2) { // testando a diagonal "secundária" 
 					//
 					// procurando por números obstruindo o caminho
 					for (int k=1;k<maiorL-menorL;k++) {
-						if (numeros[menorL+k][menorC-k] != null) {
+						if (numeros[menorL+k][maiorC-k] != null) {
 							System.err.println("tem número na frente");
 							System.err.flush();
 							deuMatch = false;
@@ -186,7 +186,12 @@ public class Soma10 {
 						}
 					}
 					
-				} else deuMatch = false;
+				} else {
+					System.err.println("posição inválida");
+					System.err.flush();
+					deuMatch = false;
+					deuMatch = false;
+				}
 			}
 		} else {
 			System.err.println("ERRRRRRRROOOOUUUUU");
