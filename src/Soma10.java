@@ -1,5 +1,6 @@
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
@@ -168,22 +169,30 @@ public class Soma10 {
 
 
 	private static void gerarDica() {
+		List<String> dicas = new ArrayList<String>();
 		for (int l1=0; l1<LINHAS; l1++) {
 			for (int c1=0; c1<COLUNAS; c1++) {
 				for (int l2=l1; l2<LINHAS; l2++) {
 					for (int c2=c1; c2<COLUNAS; c2++) {
 						ResultadoJogada resultado = getResultadoJogada(l1, c1, l2, c2);
 						if (resultado==ResultadoJogada.MATCH_IGUAIS) {
-							System.out.println("iguais "+((char)(c1+'A'))+""+(l1+1)+""+((char)(c2+'A'))+""+(l2+1));
+							dicas.add("iguais em "+((char)(c1+'A'))+""+(l1+1)+""+((char)(c2+'A'))+""+(l2+1));
 						}
 						else if (resultado==ResultadoJogada.MATCH_SOMA_10) {
-							System.out.println("soma10 "+((char)(c1+'A'))+""+(l1+1)+""+((char)(c2+'A'))+""+(l2+1));
+							dicas.add("soma 10 em "+((char)(c1+'A'))+""+(l1+1)+""+((char)(c2+'A'))+""+(l2+1));
 						} 
 					}
 				}		
 			}
 		}
 		
+		if (dicas.size()==0) {
+			System.err.println("Boing boing (sem dicas)");			
+		}
+		else {
+			Collections.shuffle(dicas);
+			System.out.println(dicas.get(0));
+		}
 	}	
 	
 	/**
