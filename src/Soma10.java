@@ -56,6 +56,11 @@ public class Soma10 {
 			}
 			return;
 		}
+		else if (entrada.charAt(0)== '?') {
+			// pediu dica
+			gerarDica();
+			return;
+		}
 		
 		int c1,l1,c2,l2;
 		
@@ -82,120 +87,32 @@ public class Soma10 {
 			return;
 		}
 		
+		/*
+		 * Separei a lógica de negócio (método abaixo) da interação com o usuário (prints) para poder reaproveitar 
+		 * o código na geração de dicas
+		 */
+		ResultadoJogada resultado = getResultadoJogada(l1,c1,l2,c2);
 		
-		if (numeros[l1][c1]==null || numeros[l2][c2] ==null) {
+		if (resultado==ResultadoJogada.ERRO_CELULA_VAZIA) {
 			System.err.println("não tem numero aí ow!");
 			System.err.flush(); 
 			return;
 		}
 		
-		boolean deuMatch = true;
-		boolean iguais = numeros[l1][c1] == numeros[l2][c2];
-		boolean soma10 = numeros[l1][c1] + numeros[l2][c2] == 10;
+		if (resultado==ResultadoJogada.ERRO_TEM_NUMERO_NA_FRENTE) {
+			System.err.println("tem número na frente");
+			System.err.flush();
+			return;
+		}
 		
-		// se os números forem iguais ou com soma 10, vamos validar suas posições
-		if (numeros[l1][c1] != null && numeros[l2][c2] != null && (iguais || soma10)) {
-			if (l1 == l2) { // se os dois estiverem na mesma linha
-				int menor = Math.min(c1, c2);
-				int maior = Math.max(c1, c2);
-				//
-				// se tiver algum numero mala obstruindo o caminho
-				for (int j=menor+1;j<maior;j++) {
-					if (numeros[l1][j] != null) {
-						System.err.println("tem número na frente");
-						System.err.flush();
-						deuMatch = false;
-						break;
-					}
-				}
-			} else if (c1 == c2) { // se os dois estiverem na mesma coluna
-				int menor = Math.min(l1, l2);
-				int maior = Math.max(l1, l2);
-				//
-				// se tiver algum numero mala obstruindo o caminho
-				for (int i=menor+1;i<maior;i++) {
-					if (numeros[i][c1] != null) {
-						System.err.println("tem número na frente");
-						System.err.flush();
-						deuMatch = false;
-						break;
-					}
-				}
-			} else {
-				int menorC = Math.min(c1, c2);
-				int maiorC = Math.max(c1, c2);
-				int menorL = Math.min(l1, l2);
-				int maiorL = Math.max(l1, l2);
-				//
-				if (maiorL-menorL == maiorC-menorC) { // se os dois estiverem na mesma "diagonal principal"
-					//
-					// procurando por números obstruindo o caminho
-					for (int k=1;k<maiorL-menorL;k++) {
-						if (numeros[menorL+k][menorC+k] != null) {
-							System.err.println("tem número na frente");
-							System.err.flush();
-							deuMatch = false;
-							break;
-						}
-					}
-				} else if (maiorL-menorL == menorC-maiorC) { // testando a diagonal "secundária" 
-					//
-					// procurando por números obstruindo o caminho
-					for (int k=1;k<maiorL-menorL;k++) {
-						if (numeros[menorL+k][menorC-k] != null) {
-							System.err.println("tem número na frente");
-							System.err.flush();
-							deuMatch = false;
-							break;
-						}
-					}
-				} else if (maiorL-menorL == 1) { // testando quebra de linha
-					
-					// preciso conhecer as posições das colunas dos elementos da linha de cima
-					// e da linha de baixo, para poder varrer o espaço entre os dois números,
-					// procurando por obstruções
-					int colUp = 0;
-					int colDown = 0;
-					//
-					if (l2 > l1) {
-						colUp = c1;
-						colDown = c2;
-					} else {
-						colUp = c2;
-						colDown = c1;
-					}
-					
-					// procurando por obstruções na primeira linha
-					for (int k = colUp+1; k < 9; k++) {
-						if (numeros[menorL][k] != null) {
-							System.err.println("tem número na frente");
-							System.err.flush();
-							deuMatch = false;
-							break;
-						}
-					}
-					// se já achou obstrução na linha de cima, nem procura na de baixo
-					if (deuMatch) {
-						for (int k = 0; k < colDown; k++) {
-							if (numeros[maiorL][k] != null) {
-								System.err.println("tem número na frente");
-								System.err.flush();
-								deuMatch = false;
-								break;
-							}
-						}
-					}
-					
-				} else deuMatch = false;
-			}
-		} else {
+		if (resultado==ResultadoJogada.ERRO_NUMEROS_INCOMPATIVEIS) {
 			System.err.println("ERRRRRRRROOOOUUUUU");
 			System.err.flush();
-			deuMatch = false;
+			return;
 		}
 
-		if (deuMatch) {
-			if (iguais) System.out.println("Iguais!");
+		if (resultado==ResultadoJogada.MATCH_IGUAIS || resultado == ResultadoJogada.MATCH_SOMA_10) {
+			if (resultado==ResultadoJogada.MATCH_IGUAIS) System.out.println("Iguais!");
 			else System.out.println("Soma 10!!!!");
 			
 			mensagemEventualMatch(l1,c1,l2,c2);
@@ -216,6 +133,152 @@ public class Soma10 {
 						
 	}
 	
+	public static enum ResultadoJogada {
+		MATCH_IGUAIS,
+		MATCH_SOMA_10,
+		ERRO_TEM_NUMERO_NA_FRENTE,
+		ERRO_NUMEROS_INCOMPATIVEIS,
+		ERRO_CELULA_VAZIA;
+	}
+	
+	private static ResultadoJogada getResultadoJogada(int l1, int c1, int l2, int c2) {
+		if (l1==l2 && c1==c2) {
+			return ResultadoJogada.ERRO_NUMEROS_INCOMPATIVEIS;
+		}
+		
+		if (numeros[l1][c1]==null || numeros[l2][c2] ==null) {
+			return ResultadoJogada.ERRO_CELULA_VAZIA;
+		}
+		
+		boolean iguais = numeros[l1][c1] == numeros[l2][c2];
+		boolean soma10 = numeros[l1][c1] + numeros[l2][c2] == 10;
+		if (!iguais && !soma10) {
+			return ResultadoJogada.ERRO_NUMEROS_INCOMPATIVEIS;
+		}
+		
+		boolean temNumeroNaFrente = temNumeroNaFrente(l1, c1, l2,c2);
+		if (temNumeroNaFrente) {
+			return ResultadoJogada.ERRO_TEM_NUMERO_NA_FRENTE;
+		}
+		
+		if (iguais) return ResultadoJogada.MATCH_IGUAIS;
+		else if (soma10) return ResultadoJogada.MATCH_SOMA_10;
+		else return null; // ????
+	}
+
+
+	private static void gerarDica() {
+		for (int l1=0; l1<LINHAS; l1++) {
+			for (int c1=0; c1<COLUNAS; c1++) {
+				for (int l2=l1; l2<LINHAS; l2++) {
+					for (int c2=c1; c2<COLUNAS; c2++) {
+						ResultadoJogada resultado = getResultadoJogada(l1, c1, l2, c2);
+						if (resultado==ResultadoJogada.MATCH_IGUAIS) {
+							System.out.println("iguais "+((char)(c1+'A'))+""+(l1+1)+""+((char)(c2+'A'))+""+(l2+1));
+						}
+						else if (resultado==ResultadoJogada.MATCH_SOMA_10) {
+							System.out.println("soma10 "+((char)(c1+'A'))+""+(l1+1)+""+((char)(c2+'A'))+""+(l2+1));
+						} 
+					}
+				}		
+			}
+		}
+		
+	}	
+	
+	/**
+	 * Refatorei a parte do código que testa se tem algum número entre as posicoes (l1,c1) e (l2,c2).
+	 * 
+	 * @param l1
+	 * @param c1
+	 * @param l2
+	 * @param c2
+	 * @return
+	 */
+	private static boolean temNumeroNaFrente(int l1, int c1, int l2, int c2) {
+		if (l1 == l2) { // se os dois estiverem na mesma linha
+			int menor = Math.min(c1, c2);
+			int maior = Math.max(c1, c2);
+			//
+			// se tiver algum numero mala obstruindo o caminho
+			for (int j=menor+1;j<maior;j++) {
+				if (numeros[l1][j] != null) {
+					return true;
+				}
+			}
+		} else if (c1 == c2) { // se os dois estiverem na mesma coluna
+			int menor = Math.min(l1, l2);
+			int maior = Math.max(l1, l2);
+			//
+			// se tiver algum numero mala obstruindo o caminho
+			for (int i=menor+1;i<maior;i++) {
+				if (numeros[i][c1] != null) {
+					return true;
+				}
+			}
+		} else {
+			int menorC = Math.min(c1, c2);
+			int maiorC = Math.max(c1, c2);
+			int menorL = Math.min(l1, l2);
+			int maiorL = Math.max(l1, l2);
+			//
+			if (maiorL-menorL == maiorC-menorC) { // se os dois estiverem na mesma "diagonal principal"
+				//
+				// procurando por números obstruindo o caminho
+				for (int k=1;k<maiorL-menorL;k++) {
+					if (numeros[menorL+k][menorC+k] != null) {
+						return true;
+					}
+				}
+			} else if (maiorL-menorL == menorC-maiorC) { // testando a diagonal "secundária" 
+				//
+				// procurando por números obstruindo o caminho
+				for (int k=1;k<maiorL-menorL;k++) {
+					if (numeros[menorL+k][menorC-k] != null) {
+						return true;
+					}
+				}
+			} else if (maiorL-menorL == 1) { // testando quebra de linha
+				
+				// preciso conhecer as posições das colunas dos elementos da linha de cima
+				// e da linha de baixo, para poder varrer o espaço entre os dois números,
+				// procurando por obstruções
+				int colUp = 0;
+				int colDown = 0;
+				//
+				if (l2 > l1) {
+					colUp = c1;
+					colDown = c2;
+				} else {
+					colUp = c2;
+					colDown = c1;
+				}
+				
+				// procurando por obstruções na primeira linha
+				for (int k = colUp+1; k < 9; k++) {
+					if (numeros[menorL][k] != null) {
+						return true;
+					}
+				}
+				// se já achou obstrução na linha de cima, nem procura na de baixo
+				// if (deuMatch) { porque já deu return né , ihhhihihihih
+				for (int k = 0; k < colDown; k++) {
+					if (numeros[maiorL][k] != null) {
+						return true;
+					}
+				}
+				// }
+				
+			}
+			else {
+				return true;
+			}
+		}
+		
+		// se não encontrou nada é porque não tem numero na frente
+		return false;
+	}
+
 	/**
 	 * Congratulações ao jogador
 	 * @param l1
@@ -226,16 +289,16 @@ public class Soma10 {
 	private static void mensagemEventualMatch(int l1, int c1, int l2, int c2) {
 		int distanciaN1 = Math.abs(l2-l1) + Math.abs(c2-c1); 
 		
-		if (distanciaN1==4) {
+		if (distanciaN1==3) {
 			System.out.println("Excelente!");
 		}
-		else if (distanciaN1==5) {
+		else if (distanciaN1==4) {
 			System.out.println("Que sacada!");
 		}
-		else if (distanciaN1==6) {
+		else if (distanciaN1==5) {
 			System.out.println("Sois Baita!");
 		}
-		else if (distanciaN1>=7) {
+		else if (distanciaN1>=6) {
 			System.out.println("Tua cabeça é maior que um balão de ar quente!");
 		}
 	}
