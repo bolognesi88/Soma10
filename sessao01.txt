@@ -1,0 +1,290 @@
+   A B C D E F G H I
+01 7 5 3 6 9 8 7 6 9
+02 1 1 1 4 1 6 6 4 1
+03 5 8 9 3 5 9 2 7 3
+04 3 7 8 2 8 8 1 7  
+Qtde números: 35
+
+? a2i1
+Soma 10!!!!
+   A B C D E F G H I
+01 7 5 3 6 9 8 7 6  
+02   1 1 4 1 6 6 4 1
+03 5 8 9 3 5 9 2 7 3
+04 3 7 8 2 8 8 1 7  
+Qtde números: 33
+
+? i2c3
+tem número na frente
+   A B C D E F G H I
+01 7 5 3 6 9 8 7 6  
+02   1 1 4 1 6 6 4 1
+03 5 8 9 3 5 9 2 7 3
+04 3 7 8 2 8 8 1 7  
+Qtde números: 33
+
+? b2c2
+Iguais!
+   A B C D E F G H I
+01 7 5 3 6 9 8 7 6  
+02       4 1 6 6 4 1
+03 5 8 9 3 5 9 2 7 3
+04 3 7 8 2 8 8 1 7  
+Qtde números: 31
+
+? d2d1
+Soma 10!!!!
+   A B C D E F G H I
+01 7 5 3   9 8 7 6  
+02         1 6 6 4 1
+03 5 8 9 3 5 9 2 7 3
+04 3 7 8 2 8 8 1 7  
+Qtde números: 29
+
+? e1e2
+Soma 10!!!!
+   A B C D E F G H I
+01 7 5 3     8 7 6  
+02           6 6 4 1
+03 5 8 9 3 5 9 2 7 3
+04 3 7 8 2 8 8 1 7  
+Qtde números: 27
+
+? h1f2
+Iguais!
+   A B C D E F G H I
+01 7 5 3     8 7    
+02             6 4 1
+03 5 8 9 3 5 9 2 7 3
+04 3 7 8 2 8 8 1 7  
+Qtde números: 25
+
+? g2h2
+Soma 10!!!!
+   A B C D E F G H I
+01 7 5 3     8 7    
+02                 1
+03 5 8 9 3 5 9 2 7 3
+04 3 7 8 2 8 8 1 7  
+Qtde números: 23
+
+? h4h3
+Iguais!
+   A B C D E F G H I
+01 7 5 3     8 7    
+02                 1
+03 5 8 9 3 5 9 2   3
+04 3 7 8 2 8 8 1    
+Qtde números: 21
+
+? g4i2
+Iguais!
+   A B C D E F G H I
+01 7 5 3     8 7    
+02 5 8 9 3 5 9 2   3
+03 3 7 8 2 8 8      
+Qtde números: 19
+
+? g2f1
+Soma 10!!!!
+   A B C D E F G H I
+01 7 5 3       7    
+02 5 8 9 3 5 9     3
+03 3 7 8 2 8 8      
+Qtde números: 17
+
+? b2c3
+Iguais!
+   A B C D E F G H I
+01 7 5 3       7    
+02 5   9 3 5 9     3
+03 3 7   2 8 8      
+Qtde números: 15
+
+? a3c1
+Iguais!
+   A B C D E F G H I
+01 7 5         7    
+02 5   9 3 5 9     3
+03   7   2 8 8      
+Qtde números: 13
+
+? i2b3
+Soma 10!!!!
+   A B C D E F G H I
+01 7 5         7    
+02 5   9 3 5 9      
+03       2 8 8      
+Qtde números: 11
+
+? d3e2
+ERRRRRRRROOOOUUUUU
+   A B C D E F G H I
+01 7 5         7    
+02 5   9 3 5 9      
+03       2 8 8      
+Qtde números: 11
+
+? d2e3
+ERRRRRRRROOOOUUUUU
+   A B C D E F G H I
+01 7 5         7    
+02 5   9 3 5 9      
+03       2 8 8      
+Qtde números: 11
+
+? d2e2
+ERRRRRRRROOOOUUUUU
+   A B C D E F G H I
+01 7 5         7    
+02 5   9 3 5 9      
+03       2 8 8      
+Qtde números: 11
+
+? d3e3
+Soma 10!!!!
+   A B C D E F G H I
+01 7 5         7    
+02 5   9 3 5 9      
+03           8      
+Qtde números: 9
+
+? +
+Tik-Tikaaaaaaaaaaaa...............
+4  bancas restantes
+   A B C D E F G H I
+01 7 5         7    
+02 5   9 3 5 9      
+03           8     7
+04 5 7 5 9 3 5 9 8  
+Qtde números: 18
+
+? a2a4
+Iguais!
+   A B C D E F G H I
+01 7 5         7    
+02     9 3 5 9      
+03           8     7
+04   7 5 9 3 5 9 8  
+Qtde números: 16
+
+? b4i3
+Iguais!
+   A B C D E F G H I
+01 7 5         7    
+02     9 3 5 9      
+03           8      
+04     5 9 3 5 9 8  
+Qtde números: 14
+
+? e2c4
+Iguais!
+   A B C D E F G H I
+01 7 5         7    
+02     9 3   9      
+03           8      
+04       9 3 5 9 8  
+Qtde números: 12
+
+? f2d4
+Iguais!
+   A B C D E F G H I
+01 7 5         7    
+02     9 3          
+03           8      
+04         3 5 9 8  
+Qtde números: 10
+
+? +
+Tik-Tikaaaaaaaaaaaa...............
+3  bancas restantes
+   A B C D E F G H I
+01 7 5         7    
+02     9 3          
+03           8      
+04         3 5 9 8 7
+05 5 7 9 3 8 3 5 9 8
+Qtde números: 20
+
+? c2c5
+Iguais!
+   A B C D E F G H I
+01 7 5         7    
+02       3          
+03           8      
+04         3 5 9 8 7
+05 5 7   3 8 3 5 9 8
+Qtde números: 18
+
+? d2d5
+Iguais!
+   A B C D E F G H I
+01 7 5         7    
+02           8      
+03         3 5 9 8 7
+04 5 7     8 3 5 9 8
+Qtde números: 16
+
+? e3f4
+Iguais!
+   A B C D E F G H I
+01 7 5         7    
+02           8      
+03           5 9 8 7
+04 5 7     8   5 9 8
+Qtde números: 14
+
+? g1i3
+Iguais!
+   A B C D E F G H I
+01 7 5              
+02           8      
+03           5 9 8  
+04 5 7     8   5 9 8
+Qtde números: 12
+
+? f3g4
+Iguais!
+   A B C D E F G H I
+01 7 5              
+02           8      
+03             9 8  
+04 5 7     8     9 8
+Qtde números: 10
+
+? g3h4
+Iguais!
+   A B C D E F G H I
+01 7 5              
+02           8      
+03               8  
+04 5 7     8       8
+Qtde números: 8
+
+? h3i4
+Iguais!
+   A B C D E F G H I
+01 7 5              
+02           8      
+03 5 7     8        
+Qtde números: 6
+
+? f2e3
+Iguais!
+   A B C D E F G H I
+01 7 5              
+02 5 7              
+Qtde números: 4
+
+? b1a2
+Iguais!
+   A B C D E F G H I
+01 7                
+02   7              
+Qtde números: 2
+
+? a1b2
+Iguais!
+ACABOOOOOUUUU, É TETRAAAAA!!!!!
+   A B C D E F G H I
+Qtde números: 0
