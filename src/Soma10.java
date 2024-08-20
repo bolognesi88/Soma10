@@ -222,7 +222,7 @@ public class Soma10 {
 			int menorL = Math.min(l1, l2);
 			int maiorL = Math.max(l1, l2);
 			//
-			if (maiorL-menorL == maiorC-menorC) { // se os dois estiverem na mesma "diagonal principal"
+			if (l2-l1 == c2-c1) { // se os dois estiverem na mesma "diagonal principal"
 				//
 				// procurando por números obstruindo o caminho
 				for (int k=1;k<maiorL-menorL;k++) {
@@ -230,11 +230,11 @@ public class Soma10 {
 						return true;
 					}
 				}
-			} else if (maiorL-menorL == menorC-maiorC) { // testando a diagonal "secundária" 
+			} else if (l2-l1 == c1-c2) { // testando a diagonal "secundária" 
 				//
 				// procurando por números obstruindo o caminho
 				for (int k=1;k<maiorL-menorL;k++) {
-					if (numeros[menorL+k][menorC-k] != null) {
+					if (numeros[menorL+k][maiorC-k] != null) { 
 						return true;
 					}
 				}
@@ -261,14 +261,11 @@ public class Soma10 {
 					}
 				}
 				// se já achou obstrução na linha de cima, nem procura na de baixo
-				// if (deuMatch) { porque já deu return né , ihhhihihihih
 				for (int k = 0; k < colDown; k++) {
 					if (numeros[maiorL][k] != null) {
 						return true;
 					}
 				}
-				// }
-				
 			}
 			else {
 				return true;
